@@ -10,6 +10,7 @@ A React starter kit(based on create-react-app) that includes an already setup fo
 4.  Start your project using: `npm run start`
 
 ## File Structure
+
 ```
 ├── README.md
 ├── node_modules
@@ -51,6 +52,7 @@ A React starter kit(based on create-react-app) that includes an already setup fo
 └── serviceWorker.js
 └── setupTests.js
 ```
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -71,3 +73,15 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
+
+### `npm run lint`
+
+ESLint command that lints all your files
+
+### `npm run lint:fix`
+
+ESLint command that lints and fixes all your files
+
+### `npm run format`
+
+Prettier command to format file with the option --write which is similar to the --fix option of ESLint. For example the following command formats every .ts or .tsx or .js or .jsx file located in a src folder
