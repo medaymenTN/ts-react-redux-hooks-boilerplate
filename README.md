@@ -10,7 +10,7 @@ A React starter kit(based on create-react-app) that includes an already setup fo
 4.  Start your project using: `npm run start`
 
 ## File Structure
-
+```
 ├── README.md
 ├── node_modules
 ├── package.json
@@ -50,7 +50,7 @@ A React starter kit(based on create-react-app) that includes an already setup fo
 ├── index.js
 └── serviceWorker.js
 └── setupTests.js
-
+```
 ## Available Scripts
 
 In the project directory, you can run:
