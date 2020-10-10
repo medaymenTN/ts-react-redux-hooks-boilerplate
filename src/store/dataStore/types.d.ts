@@ -1,5 +1,6 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './data.action.creators';
+
 type IDataState = {
   data: any[];
   loading: boolean;

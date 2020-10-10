@@ -4,7 +4,7 @@ import { AnyAction } from 'redux';
 import {
   loginIsPending,
   loginSuccess,
-  loginError
+  loginError,
 } from './user.action.creators';
 import { IUserPayload } from './types';
 
@@ -19,7 +19,7 @@ import { IUserPayload } from './types';
  */
 export const LoginAction = (
   username: string,
-  password: string
+  password: string,
 ): ThunkAction<void, {}, {}, AnyAction> => {
   return (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     let response: IUserPayload = {};
@@ -30,23 +30,21 @@ export const LoginAction = (
         response = {
           userData: {
             username: 'aymen',
-            email: 'mohamedaymen.ourabi@gmail.com'
+            email: 'mohamedaymen.ourabi@gmail.com',
           },
-          token: '2auyeiuahiuui87998'
+          token: '2auyeiuahiuui87998',
         };
         localStorage.setItem('token', String(response.token));
         return dispatch(loginSuccess(response));
-      } else {
-        response = {
-          errorMessage: 'password incorrect'
-        };
-        return dispatch(loginError(response));
       }
-    } else {
       response = {
-        errorMessage: 'user does not exist'
+        errorMessage: 'password incorrect',
       };
       return dispatch(loginError(response));
     }
+    response = {
+      errorMessage: 'user does not exist',
+    };
+    return dispatch(loginError(response));
   };
 };

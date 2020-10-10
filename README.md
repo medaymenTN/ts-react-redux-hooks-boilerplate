@@ -35,13 +35,16 @@ A React starter kit(based on create-react-app) that includes an already setup fo
 | | |__routes.ts
 | |__store
 | | |__UserStore
-| | | |__types.ts
+| | | |__action.enum.ts
+| | | |__types.d.ts
 | | | |__user.action.creators.ts
 | | | |__user.action.ts
 | | | |__user.reducer.ts
 | | |
 | | |__rootReducer.ts
 | | |__store.ts
+| | |__types.d.ts
+| |
 | |__helpers
 | |__services(xhr)
 ├── App.css

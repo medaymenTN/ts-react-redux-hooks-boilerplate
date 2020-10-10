@@ -1,4 +1,5 @@
 import { API } from '../middlewares/middleware';
+
 type Product = {
   id: string;
   price: string;

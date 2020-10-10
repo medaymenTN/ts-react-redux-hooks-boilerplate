@@ -5,7 +5,7 @@ import userReducer from './userStore/user.reducer';
 
 const reducers: Reducer<CombinedState<any>, any> = combineReducers({
   data: dataReducer,
-  user: userReducer
+  user: userReducer,
 });
 
 export default reducers;

@@ -1,8 +1,9 @@
 import { IDataActionType, IDataState } from './types';
 import actionTypes from './action.enum';
+
 const AppState: IDataState = {
   data: [],
-  loading: false
+  loading: false,
 };
 const dataReducer = (state = AppState, action: IDataActionType) => {
   switch (action.type) {

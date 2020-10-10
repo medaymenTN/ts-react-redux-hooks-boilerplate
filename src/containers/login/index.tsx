@@ -3,14 +3,14 @@ import './styles.css';
 import {
   MapStateToPropsParam,
   connect,
-  MapDispatchToPropsParam
+  MapDispatchToPropsParam,
 } from 'react-redux';
-import { LoginAction } from '../../store/userStore/user.actions.async';
 import { useTranslation } from 'react-i18next';
-import { ILoginDispatchProps, ILoginProps, ILoginStateProps } from './types';
-import RootState from '../../store/types';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
+import { LoginAction } from '../../store/userStore/user.actions.async';
+import { ILoginDispatchProps, ILoginProps, ILoginStateProps } from './types';
+import RootState from '../../store/types';
 
 const Login: React.FC<ILoginProps> = (props) => {
   const { dispatchLoginAction, errorMessage, loading } = props;
@@ -54,21 +54,21 @@ const Login: React.FC<ILoginProps> = (props) => {
 };
 
 const mapStateToProps: MapStateToPropsParam<ILoginStateProps, {}, RootState> = (
-  state: RootState
+  state: RootState,
 ) => {
   return {
     errorMessage: state.user.errorMessage,
-    loading: state.user.loading
+    loading: state.user.loading,
   };
 };
 
 const mapDispatchToProps: MapDispatchToPropsParam<ILoginDispatchProps, {}> = (
-  dispatch: ThunkDispatch<RootState, {}, Action>
+  dispatch: ThunkDispatch<RootState, {}, Action>,
 ) => {
   return {
     dispatchLoginAction: (username: string, password: string) => {
       return dispatch(LoginAction(username, password));
-    }
+    },
   };
 };
 

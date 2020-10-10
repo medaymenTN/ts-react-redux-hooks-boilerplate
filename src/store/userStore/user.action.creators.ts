@@ -1,5 +1,5 @@
-import actionTypes from './action.enum';
 import { action } from 'typesafe-actions';
+import actionTypes from './action.enum';
 import { IUserPayload } from './types';
 
 const loginIsPending = () => action(actionTypes.LOGIN_PENDING);

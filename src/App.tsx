@@ -1,16 +1,17 @@
-import React from "react";
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   RouteProps,
-} from "react-router-dom";
-import "./App.css";
-import { Provider } from "react-redux";
-import store from "./store/store";
-import routes from "./routes/routes";
-import { I18nextProvider } from "react-i18next";
-import i18n from "./i18n/i18next";
+} from 'react-router-dom';
+import './App.css';
+import { Provider } from 'react-redux';
+import { I18nextProvider } from 'react-i18next';
+import store from './store/store';
+import routes from './routes/routes';
+import i18n from './i18n/i18next';
+
 const App = () => {
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
     i18n.changeLanguage(e.target.value);

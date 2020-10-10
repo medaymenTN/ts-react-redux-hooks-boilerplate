@@ -5,7 +5,7 @@ const INITIAL_STATE: IUserState = {
   userData: {},
   loading: false,
   isLoggedIn: false,
-  errorMessage: ''
+  errorMessage: '',
 };
 /**
  *
@@ -14,7 +14,7 @@ const INITIAL_STATE: IUserState = {
  */
 const userReducer = (
   state = INITIAL_STATE,
-  action: IUserActionType
+  action: IUserActionType,
 ): IUserState => {
   switch (action.type) {
     case actionTypes.LOGIN_PENDING:
@@ -24,13 +24,13 @@ const userReducer = (
         ...state,
         loading: false,
         userData: action.payload,
-        isLoggedIn: true
+        isLoggedIn: true,
       };
     case actionTypes.LOGIN__ERROR:
       return {
         ...state,
         loading: false,
-        errorMessage: action.payload.errorMessage || ' '
+        errorMessage: action.payload.errorMessage || ' ',
       };
     default:
       return state;
