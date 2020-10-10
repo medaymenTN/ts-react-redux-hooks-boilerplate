@@ -1,46 +1,51 @@
-import React from "react";
-import "./styles.css";
-import { useDispatch, useSelector, DefaultRootState } from "react-redux";
-import { LoginAction } from "../../store/userStore/user.actions";
-import { RootState } from "../../store/rootReducer";
-import { useTranslation } from "react-i18next";
-const Login: React.FC<{}> = () => {
+import React from 'react';
+import './styles.css';
+import {
+  MapStateToPropsParam,
+  connect,
+  MapDispatchToPropsParam
+} from 'react-redux';
+import { LoginAction } from '../../store/userStore/user.actions.async';
+import { useTranslation } from 'react-i18next';
+import { ILoginDispatchProps, ILoginProps, ILoginStateProps } from './types';
+import RootState from '../../store/types';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
+
+const Login: React.FC<ILoginProps> = (props) => {
+  const { dispatchLoginAction, errorMessage, loading } = props;
   const { t } = useTranslation();
-  const [username, setUsername] = React.useState<string>("");
-  const [password, setPassword] = React.useState<string>("");
-  const state = useSelector<DefaultRootState, any>(
-    (state: RootState) => state.user
-  );
-  const dispatch = useDispatch();
+  const [username, setUsername] = React.useState<string>('');
+  const [password, setPassword] = React.useState<string>('');
 
   const handleOnClick = (): void => {
-    dispatch(LoginAction(username, password));
+    dispatchLoginAction(username, password);
   };
 
   return (
     <div className="container">
       <div>
-        <p>{t("username")}</p>
+        <p>{t('username')}</p>
         <input
           type="text"
           name="username"
           id="username"
-          placeholder={t("username")}
+          placeholder={t('username')}
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
       <div>
-        <p>{t("password")}</p>
+        <p>{t('password')}</p>
         <input
           type="password"
           name="password"
           id="password"
-          placeholder={t("password")}
+          placeholder={t('password')}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <div>{state.loading ? <div>Loading ...</div> : <></>}</div>
-      <div>{state.errorMessage}</div>
+      <div>{loading ? <div>Loading ...</div> : <></>}</div>
+      <div>{errorMessage}</div>
       <div>
         <input type="button" value="login" onClick={handleOnClick} />
       </div>
@@ -48,4 +53,23 @@ const Login: React.FC<{}> = () => {
   );
 };
 
-export default Login;
+const mapStateToProps: MapStateToPropsParam<ILoginStateProps, {}, RootState> = (
+  state: RootState
+) => {
+  return {
+    errorMessage: state.user.errorMessage,
+    loading: state.user.loading
+  };
+};
+
+const mapDispatchToProps: MapDispatchToPropsParam<ILoginDispatchProps, {}> = (
+  dispatch: ThunkDispatch<RootState, {}, Action>
+) => {
+  return {
+    dispatchLoginAction: (username: string, password: string) => {
+      return dispatch(LoginAction(username, password));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

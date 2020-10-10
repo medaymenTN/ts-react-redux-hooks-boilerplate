@@ -1,23 +1,9 @@
-import actionTypes from "./types";
+import { action } from 'typesafe-actions';
+import actionTypes from './action.enum';
 
-export interface IActionCreator {
-  type: actionTypes;
-  payload?: any;
-  loading: boolean;
-}
+export const loadDataPending = () => action(actionTypes.LOAD_DATA);
 
-export const loadDataPending = (): IActionCreator => ({
-  type: actionTypes.LOAD_DATA,
-  loading: true,
-});
+export const loadDataSuccess = (payload: any) =>
+  action(actionTypes.LOAD_DATA_SUCCESS, payload);
 
-export const loadDataSuccess = (payload: any): IActionCreator => ({
-  type: actionTypes.LOAD_DATA_SUCCESS,
-  loading: false,
-  payload: payload,
-});
-
-export const loadDataError = (): IActionCreator => ({
-  type: actionTypes.LOAD_DATA_ERROR,
-  loading: false,
-});
+export const loadDataError = () => action(actionTypes.LOAD_DATA_ERROR);

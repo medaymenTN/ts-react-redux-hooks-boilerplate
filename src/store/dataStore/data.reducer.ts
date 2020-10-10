@@ -1,16 +1,10 @@
-import { IActionCreator } from "./data.action.creators";
-import actionTypes from "./types";
-
-interface IINITIAL_STATE {
-  data: [];
-  loading: boolean;
-}
-
-const AppState: IINITIAL_STATE = {
+import { IDataActionType, IDataState } from './types';
+import actionTypes from './action.enum';
+const AppState: IDataState = {
   data: [],
-  loading: false,
+  loading: false
 };
-const dataReducer = (state = AppState, action: IActionCreator) => {
+const dataReducer = (state = AppState, action: IDataActionType) => {
   switch (action.type) {
     case actionTypes.LOAD_DATA:
       return { ...state, loading: true };

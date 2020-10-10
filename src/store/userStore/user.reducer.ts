@@ -1,27 +1,21 @@
-import { IActionCreator } from "./user.action.creators";
-import actionTypes from "./types";
+import actionTypes from './action.enum';
+import { IUserActionType, IUserState } from './types';
 
-interface IUserState {
-  userData: {};
-  loading: boolean;
-  token: string;
-  isLoggedIn: boolean;
-  errorMessage: string;
-}
-
-const AppState: IUserState = {
+const INITIAL_STATE: IUserState = {
   userData: {},
   loading: false,
-  token: "",
   isLoggedIn: false,
-  errorMessage: "",
+  errorMessage: ''
 };
 /**
  *
  * @param state
  * @param action
  */
-const userReducer = (state = AppState, action: IActionCreator): IUserState => {
+const userReducer = (
+  state = INITIAL_STATE,
+  action: IUserActionType
+): IUserState => {
   switch (action.type) {
     case actionTypes.LOGIN_PENDING:
       return { ...state, loading: true };
@@ -29,15 +23,14 @@ const userReducer = (state = AppState, action: IActionCreator): IUserState => {
       return {
         ...state,
         loading: false,
-        token: action.payload.token,
-        userData: action.payload.userData,
-        isLoggedIn: true,
+        userData: action.payload,
+        isLoggedIn: true
       };
     case actionTypes.LOGIN__ERROR:
       return {
         ...state,
         loading: false,
-        errorMessage: action.payload.errorMessage,
+        errorMessage: action.payload.errorMessage || ' '
       };
     default:
       return state;

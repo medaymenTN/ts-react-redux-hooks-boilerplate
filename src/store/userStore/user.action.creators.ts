@@ -1,24 +1,13 @@
-import actionTypes from "./types";
+import actionTypes from './action.enum';
+import { action } from 'typesafe-actions';
+import { IUserPayload } from './types';
 
-export interface IActionCreator {
-  type: actionTypes;
-  payload?: any;
-  loading: boolean;
-}
+const loginIsPending = () => action(actionTypes.LOGIN_PENDING);
 
-export const loginIsPending = (): IActionCreator => ({
-  type: actionTypes.LOGIN_PENDING,
-  loading: true,
-});
+const loginSuccess = (userParams: IUserPayload) =>
+  action(actionTypes.LOGIN__SUCCESS, userParams);
 
-export const loginSuccess = (payload: any): IActionCreator => ({
-  type: actionTypes.LOGIN__SUCCESS,
-  loading: false,
-  payload: payload,
-});
+const loginError = (error: IUserPayload) =>
+  action(actionTypes.LOGIN__ERROR, error);
 
-export const loginError = (payload: any): IActionCreator => ({
-  type: actionTypes.LOGIN__ERROR,
-  loading: false,
-  payload: payload,
-});
+export { loginError, loginSuccess, loginIsPending };
